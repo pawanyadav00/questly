@@ -1,0 +1,19 @@
+.page {
+  padding: var(--space-8);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.statCard {
+  padding: var(--space-4);
+}

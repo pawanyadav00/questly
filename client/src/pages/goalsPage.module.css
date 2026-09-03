@@ -1,0 +1,35 @@
+.page {
+  padding: var(--space-8) 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-8);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  color: var(--text-primary);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin-top: var(--space-2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-12) 0;
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--border-default);
+}
