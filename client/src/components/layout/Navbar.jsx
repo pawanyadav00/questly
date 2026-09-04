@@ -1,10 +1,13 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
-import { RiSwordFill, RiMoonFill, RiSunFill } from 'react-icons/ri';
+import { PlayerContext } from '../../context/PlayerContext';
+import { RiSwordFill, RiMoonFill, RiSunFill, RiVipCrownFill, RiCoinsLine } from 'react-icons/ri';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
+  const { player } = useContext(PlayerContext);
 
   return (
     <nav className={styles.navbar}>
@@ -35,7 +38,14 @@ const Navbar = () => {
       </div>
 
       <div className={styles.actions}>
-        {/* Placeholder for future XP Bar */}
+        <div className={styles.playerStats}>
+          <span className={styles.statBadge}>
+            <RiVipCrownFill className={styles.statIcon} /> Lvl {player.level}
+          </span>
+          <span className={styles.statBadge}>
+            <RiCoinsLine className={styles.statIcon} /> {player.coins}
+          </span>
+        </div>
         <button className={styles.themeToggle} onClick={toggleTheme}>
           {theme === 'dark' ? <RiSunFill /> : <RiMoonFill />}
         </button>

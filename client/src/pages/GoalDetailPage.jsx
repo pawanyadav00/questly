@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getGoals, saveGoals } from '../services/storage';
+import { PlayerContext } from '../context/PlayerContext';
 import { RiArrowLeftLine, RiAddLine } from 'react-icons/ri';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
@@ -13,6 +14,7 @@ import styles from './goalDetailPage.module.css';
 const GoalDetailPage = () => {
   const { goalId } = useParams();
   const navigate = useNavigate();
+  const { completeQuest } = useContext(PlayerContext);
   
   const [goal, setGoal] = useState(null);
   const [isQuestModalOpen, setIsQuestModalOpen] = useState(false);
@@ -69,7 +71,13 @@ const GoalDetailPage = () => {
   };
 
   const handleCompleteQuest = (questId) => {
-    // Basic completion logic for Phase 2 (Phase 3 will add XP/Coins)
+    // Find the quest to get its rewards
+    const completedQuest = goal.quests.find(q => q.id === questId);
+    if (!completedQuest) return;
+
+    // Call context to award XP and Coins
+    completeQuest(questId, completedQuest.xpReward, completedQuest.coinReward);
+
     const newQuests = goal.quests.map(q => {
       if (q.id === questId) return { ...q, status: 'completed' };
       // If this quest was a prerequisite for another locked quest, unlock it

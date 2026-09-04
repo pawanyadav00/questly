@@ -1,11 +1,16 @@
+import { useContext } from 'react';
 import Card from '../components/common/Card';
 import Badge from '../components/common/Badge';
-import { getPlayer, getStats } from '../services/storage';
+import { PlayerContext } from '../context/PlayerContext';
+import { getStats } from '../services/storage';
+import { getRequiredXp } from '../utils/levelMath';
 import styles from './dashboardPage.module.css';
 
 const DashboardPage = () => {
-  const player = getPlayer();
+  const { player } = useContext(PlayerContext);
   const stats = getStats();
+  const xpRequired = getRequiredXp(player.level);
+
   return (
     <div className={`container ${styles.page}`}>
       <h1 className={styles.title}>Welcome, {player.name}!</h1>
@@ -16,7 +21,7 @@ const DashboardPage = () => {
         </Card>
         <Card className={styles.statCard}>
           <h3>XP</h3>
-          <p>{player.xp} / {player.totalXp}</p>
+          <p>{player.xp} / {xpRequired}</p>
         </Card>
         <Card className={styles.statCard}>
           <h3>Coins</h3>
