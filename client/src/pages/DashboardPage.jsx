@@ -31,6 +31,39 @@ const DashboardPage = () => {
           <h3>Daily Quest XP</h3>
           <p>{stats.dailyXp && Object.keys(stats.dailyXp).length > 0 ? Object.values(stats.dailyXp).reduce((a,b)=>a+b,0) : 0}</p>
         </Card>
+        <Card className={styles.statCard}>
+          <h3>Streak 🔥</h3>
+          <p>{player.streak} days</p>
+        </Card>
+      </div>
+
+      <div className={styles.skillsSection}>
+        <h2 className={styles.sectionTitle}>Skills Progression</h2>
+        <div className={styles.skillsGrid}>
+          {player.skills && player.skills.map(skill => {
+            const skillReqXp = getRequiredXp(skill.level);
+            const progress = skillReqXp > 0 ? Math.round((skill.xp / skillReqXp) * 100) : 0;
+            return (
+              <Card key={skill.id} className={styles.skillCard}>
+                <div className={styles.skillHeader}>
+                  <span className={styles.skillIcon}>{skill.icon}</span>
+                  <div className={styles.skillTitleArea}>
+                    <h4 className={styles.skillName}>{skill.name}</h4>
+                    <span className={styles.skillLevel}>Lvl {skill.level}</span>
+                  </div>
+                </div>
+                <div className={styles.skillProgress}>
+                  <div className={styles.skillProgressText}>
+                    <span>{skill.xp} / {skillReqXp} XP</span>
+                  </div>
+                  <div className={styles.progressBarWrapper}>
+                    <div className={styles.progressBarFill} style={{ width: `${progress}%` }}></div>
+                  </div>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

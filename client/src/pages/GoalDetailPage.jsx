@@ -75,8 +75,8 @@ const GoalDetailPage = () => {
     const completedQuest = goal.quests.find(q => q.id === questId);
     if (!completedQuest) return;
 
-    // Call context to award XP and Coins
-    completeQuest(questId, completedQuest.xpReward, completedQuest.coinReward);
+    // Call context to award XP and Coins (and skill XP if a skill is assigned)
+    completeQuest(questId, completedQuest.xpReward, completedQuest.coinReward, completedQuest.skillId);
 
     const newQuests = goal.quests.map(q => {
       if (q.id === questId) return { ...q, status: 'completed' };

@@ -8,8 +8,41 @@ export const PlayerProvider = ({ children }) => {
   const [player, setPlayer] = useState(getPlayer());
 
   useEffect(() => {
+    checkDaily();
+  }, []);
+
+  useEffect(() => {
     savePlayer(player);
   }, [player]);
+
+  const checkDaily = () => {
+    setPlayer(prev => {
+      const today = new Date().toISOString().split('T')[0];
+      const lastActive = prev.lastActiveDate;
+      
+      if (today === lastActive) return prev; // Already active today
+
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+      let newStreak = prev.streak;
+      if (lastActive === yesterdayStr) {
+        newStreak += 1;
+      } else {
+        newStreak = 1; // Reset streak if missed a day
+      }
+
+      const newLongestStreak = Math.max(newStreak, prev.longestStreak);
+
+      return {
+        ...prev,
+        streak: newStreak,
+        longestStreak: newLongestStreak,
+        lastActiveDate: today
+      };
+    });
+  };
 
   const addXp = (amount) => {
     setPlayer((prevPlayer) => {
@@ -48,9 +81,30 @@ export const PlayerProvider = ({ children }) => {
     setPlayer((prev) => ({ ...prev, coins: prev.coins + amount }));
   };
 
-  const completeQuest = (questId, xpReward, coinReward) => {
+  const completeQuest = (questId, xpReward, coinReward, skillId) => {
     if (xpReward) addXp(xpReward);
     if (coinReward) addCoins(coinReward);
+    
+    if (skillId && xpReward) {
+      setPlayer((prev) => {
+        const updatedSkills = prev.skills.map(skill => {
+          if (skill.id === skillId) {
+            let newXp = skill.xp + xpReward;
+            let newLevel = skill.level;
+            let reqXp = getRequiredXp(newLevel);
+            
+            while (newXp >= reqXp) {
+              newXp -= reqXp;
+              newLevel++;
+              reqXp = getRequiredXp(newLevel);
+            }
+            return { ...skill, xp: newXp, level: newLevel };
+          }
+          return skill;
+        });
+        return { ...prev, skills: updatedSkills };
+      });
+    }
   };
 
   return (

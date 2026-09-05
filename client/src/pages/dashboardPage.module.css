@@ -17,3 +17,73 @@
 .statCard {
   padding: var(--space-4);
 }
+
+.skillsSection {
+  margin-top: var(--space-8);
+}
+
+.sectionTitle {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+}
+
+.skillCard {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.skillHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.skillIcon {
+  font-size: var(--text-3xl);
+}
+
+.skillTitleArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.skillName {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.skillLevel {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.skillProgressText {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  text-align: right;
+  margin-bottom: var(--space-1);
+}
+
+.progressBarWrapper {
+  height: 8px;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: var(--accent-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}

@@ -48,6 +48,11 @@ const QuestCard = ({ quest, onEdit, onDelete, onComplete }) => {
       <div className={styles.meta}>
         <Badge variant="neutral">{quest.type}</Badge>
         <Badge variant={quest.difficulty}>{quest.difficulty}</Badge>
+        {quest.skillId && (
+          <Badge variant="neutral" style={{ textTransform: 'capitalize' }}>
+            {quest.skillId.replace('_', ' ')}
+          </Badge>
+        )}
       </div>
 
       <div className={styles.rewards}>
