@@ -32,6 +32,36 @@ export const getPlayer = () => getFromStorage('lifequest_player', {
   lastActiveDate: new Date().toISOString().split('T')[0],
   title: "Beginner",
   unlockedTitles: ["Beginner"],
+  achievements: [
+    {
+      id: "quest_master",
+      name: "Quest Master",
+      description: "Complete 50 quests",
+      icon: "🏆",
+      unlocked: false
+    },
+    {
+      id: "streak_hero",
+      name: "Streak Hero",
+      description: "Maintain a 7‑day login streak",
+      icon: "🔥",
+      unlocked: false
+    },
+    {
+      id: "skill_pro",
+      name: "Skill Pro",
+      description: "Reach level 5 in any skill",
+      icon: "💡",
+      unlocked: false
+    },
+    {
+      id: "coin_collector",
+      name: "Coin Collector",
+      description: "Accumulate 500 coins",
+      icon: "💰",
+      unlocked: false
+    }
+  ],
   skills: [
     { id: "coding", name: "Coding", icon: "💻", level: 1, xp: 0 },
     { id: "knowledge", name: "Knowledge", icon: "📚", level: 1, xp: 0 },
@@ -40,6 +70,16 @@ export const getPlayer = () => getFromStorage('lifequest_player', {
     { id: "creativity", name: "Creativity", icon: "🎨", level: 1, xp: 0 }
   ]
 });
+
+// Unlock achievement helper
+export const unlockAchievement = (id) => {
+  const player = getPlayer();
+  const updated = player.achievements.map(a =>
+    a.id === id ? { ...a, unlocked: true } : a
+  );
+  savePlayer({ ...player, achievements: updated });
+  return updated.find(a => a.id === id);
+};
 
 export const savePlayer = (player) => saveToStorage('lifequest_player', player);
 

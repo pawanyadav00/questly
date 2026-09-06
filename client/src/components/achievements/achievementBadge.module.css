@@ -1,0 +1,57 @@
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px;
+  width: 120px;
+  height: 140px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.badge:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.unlocked {
+  opacity: 1;
+}
+
+.locked {
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.info {
+  text-align: center;
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.new {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,215,0,0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(255,215,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,215,0,0); }
+}

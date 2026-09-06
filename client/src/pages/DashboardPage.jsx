@@ -4,6 +4,8 @@ import Badge from '../components/common/Badge';
 import { PlayerContext } from '../context/PlayerContext';
 import { getStats } from '../services/storage';
 import { getRequiredXp } from '../utils/levelMath';
+import AchievementGrid from '../components/achievements/AchievementGrid';
+import Toast from '../components/common/Toast';
 import styles from './dashboardPage.module.css';
 
 const DashboardPage = () => {
@@ -36,6 +38,10 @@ const DashboardPage = () => {
           <p>{player.streak} days</p>
         </Card>
       </div>
+      {/* Toast notification for newly unlocked achievement */}
+      <Toast />
+      {/* Achievements grid */}
+      <AchievementGrid />
 
       <div className={styles.skillsSection}>
         <h2 className={styles.sectionTitle}>Skills Progression</h2>
