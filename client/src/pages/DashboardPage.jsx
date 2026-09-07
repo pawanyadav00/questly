@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import Card from '../components/common/Card';
+
 import Badge from '../components/common/Badge';
 import { PlayerContext } from '../context/PlayerContext';
 import { getStats } from '../services/storage';
@@ -42,6 +43,7 @@ const DashboardPage = () => {
       <Toast />
       {/* Achievements grid */}
       <AchievementGrid />
+
 
       <div className={styles.skillsSection}>
         <h2 className={styles.sectionTitle}>Skills Progression</h2>
