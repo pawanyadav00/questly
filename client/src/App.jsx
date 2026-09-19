@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { PlayerProvider } from './context/PlayerContext';
 import Navbar from './components/layout/Navbar';
+import SkillTreePage from './components/skills/SkillTreePage';
 import DashboardPage from './pages/DashboardPage';
 import GoalsPage from './pages/GoalsPage';
 import GoalDetailPage from './pages/GoalDetailPage';
@@ -20,6 +21,7 @@ function App() {
               <Route path="/goals" element={<GoalsPage />} />
               <Route path="/goals/:goalId" element={<GoalDetailPage />} />
               <Route path="/quests" element={<QuestsPage />} />
+              <Route path="/skills" element={<SkillTreePage />} />
             </Routes>
           </div>
         </BrowserRouter>

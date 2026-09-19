@@ -64,6 +64,7 @@ export const PlayerProvider = ({ children }) => {
     if (coinReward) addCoins(coinReward);
     if (skillId && xpReward) {
       setPlayer(prev => {
+        const oldSkill = prev.skills.find(s => s.id === skillId);
         const updatedSkills = prev.skills.map(skill => {
           if (skill.id === skillId) {
             let newXp = skill.xp + xpReward;
@@ -78,6 +79,10 @@ export const PlayerProvider = ({ children }) => {
           }
           return skill;
         });
+        const newSkill = updatedSkills.find(s => s.id === skillId);
+        if (oldSkill && newSkill && newSkill.level > oldSkill.level) {
+          setRecentSkill(newSkill);
+        }
         return { ...prev, skills: updatedSkills };
       });
     }
@@ -85,6 +90,7 @@ export const PlayerProvider = ({ children }) => {
 
   // State for recent unlocked achievement to trigger UI notifications
   const [recentAchievement, setRecentAchievement] = useState(null);
+  const [recentSkill, setRecentSkill] = useState(null);
 
   const unlockAchievementAndNotify = (id) => {
     const achievement = unlockAchievement(id);
@@ -108,6 +114,7 @@ export const PlayerProvider = ({ children }) => {
         unlockAchievement: unlockAchievementAndNotify,
         recentAchievement,
         clearRecentAchievement: () => setRecentAchievement(null),
+        clearRecentSkill: () => setRecentSkill(null),
       }}
     >
       {children}
