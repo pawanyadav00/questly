@@ -1,0 +1,14 @@
+/* dailyChallengePage.module.css */
+
+.pageContainer {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+@media (max-width: 600px) {
+  .pageContainer {
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+}

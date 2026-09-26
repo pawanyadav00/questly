@@ -103,6 +103,14 @@ export const PlayerProvider = ({ children }) => {
     return achievement;
   };
 
+  const updatePlayerName = (newName) => {
+    setPlayer(prev => ({ ...prev, name: newName }));
+  };
+
+  const updatePlayerTitle = (newTitle) => {
+    setPlayer(prev => ({ ...prev, title: newTitle }));
+  };
+
   // Expose functions via context, including the wrapper for unlocking achievements
   return (
     <PlayerContext.Provider
@@ -115,6 +123,8 @@ export const PlayerProvider = ({ children }) => {
         recentAchievement,
         clearRecentAchievement: () => setRecentAchievement(null),
         clearRecentSkill: () => setRecentSkill(null),
+        updatePlayerName,
+        updatePlayerTitle,
       }}
     >
       {children}

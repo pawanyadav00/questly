@@ -7,6 +7,10 @@ import DashboardPage from './pages/DashboardPage';
 import GoalsPage from './pages/GoalsPage';
 import GoalDetailPage from './pages/GoalDetailPage';
 import QuestsPage from './pages/QuestsPage';
+import ProfilePage from './pages/ProfilePage';
+import SettingsPage from './pages/SettingsPage';
+import StatisticsPage from './pages/StatisticsPage';
+import DailyChallengePage from './pages/DailyChallengePage';
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
               <Route path="/goals/:goalId" element={<GoalDetailPage />} />
               <Route path="/quests" element={<QuestsPage />} />
               <Route path="/skills" element={<SkillTreePage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/stats" element={<StatisticsPage />} />
+              <Route path="/daily" element={<DailyChallengePage />} />
             </Routes>
           </div>
         </BrowserRouter>
