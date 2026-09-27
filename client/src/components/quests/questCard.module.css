@@ -47,12 +47,20 @@
   margin-top: var(--space-2);
 }
 
-.rewards {
+.bottomRow {
   display: flex;
-  gap: var(--space-4);
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
   margin-top: auto;
   padding-top: var(--space-3);
   border-top: 1px solid var(--border-default);
+  flex-wrap: wrap;
+}
+
+.rewards {
+  display: flex;
+  gap: var(--space-4);
   font-size: var(--text-sm);
   font-weight: 600;
 }
@@ -63,6 +71,21 @@
 
 .coins {
   color: var(--coin-yellow);
+}
+
+.challengeActionArea {
+  display: flex;
+  align-items: center;
+}
+
+.challengeBtn {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.75rem;
+}
+
+.reviewBtn {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
 }
 
 .actions {

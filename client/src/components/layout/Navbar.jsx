@@ -7,7 +7,10 @@ import styles from './navbar.module.css';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
-  const { player } = useContext(PlayerContext);
+  const { player, activeGoal, goals, switchActiveGoal } = useContext(PlayerContext);
+
+  const activeLevel = activeGoal?.level || 1;
+  const activeCoins = activeGoal?.coins || 0;
 
   return (
     <nav className={styles.navbar}>
@@ -41,21 +44,32 @@ const Navbar = () => {
         >
           Stats
         </NavLink>
-        <NavLink 
-          to="/daily" 
-          className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}
-        >
-          Daily
-        </NavLink>
       </div>
 
       <div className={styles.actions}>
+        {goals && goals.length > 0 && (
+          <div className={styles.envPill} title="Active Learning Environment">
+            <span className={styles.envIcon}>📚</span>
+            <select
+              className={styles.envSelect}
+              value={activeGoal?.id || ''}
+              onChange={(e) => switchActiveGoal(e.target.value)}
+            >
+              {goals.map(g => (
+                <option key={g.id} value={g.id}>
+                  {g.title.length > 18 ? g.title.slice(0, 16) + '...' : g.title}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         <div className={styles.playerStats}>
-          <span className={styles.statBadge}>
-            <RiVipCrownFill className={styles.statIcon} /> Lvl {player.level}
+          <span className={styles.statBadge} title={`Active Syllabus Level: Lvl ${activeLevel}`}>
+            <RiVipCrownFill className={styles.statIcon} /> Lvl {activeLevel}
           </span>
-          <span className={styles.statBadge}>
-            <RiCoinsLine className={styles.statIcon} /> {player.coins}
+          <span className={styles.statBadge} title={`Active Syllabus Coins: ${activeCoins}`}>
+            <RiCoinsLine className={styles.statIcon} /> {activeCoins}
           </span>
         </div>
         <NavLink to="/profile" className={styles.iconLink}>

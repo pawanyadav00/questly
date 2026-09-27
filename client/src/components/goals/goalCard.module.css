@@ -30,8 +30,27 @@
 
 .meta {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-2);
   margin-top: var(--space-2);
+}
+
+.deadlineTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  background: var(--bg-tertiary, rgba(255, 255, 255, 0.05));
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.urgentDeadline {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.15);
+  font-weight: 600;
 }
 
 .footer {
@@ -47,4 +66,57 @@
 
 .progressSection {
   width: 100%;
+}
+
+.activeCard {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.2);
+}
+
+.activateBtn {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #818cf8;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.activateBtn:hover {
+  background: var(--accent-primary);
+  color: #fff;
+}
+
+.metaStatTag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+}
+
+.deleteBtn {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
 }

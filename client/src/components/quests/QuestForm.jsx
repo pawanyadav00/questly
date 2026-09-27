@@ -145,23 +145,7 @@ const QuestForm = ({ goalId, initialData, availableQuests, onSubmit, onCancel })
         </div>
       )}
 
-      <div className={styles.formGroup}>
-        <label className={styles.label} htmlFor="skillId">Associated Skill (Optional)</label>
-        <select 
-          className={styles.select} 
-          id="skillId" 
-          name="skillId" 
-          value={formData.skillId} 
-          onChange={handleChange}
-        >
-          <option value="">None (General XP only)</option>
-          <option value="coding">Coding 💻</option>
-          <option value="knowledge">Knowledge 📚</option>
-          <option value="problem_solving">Problem Solving 🧠</option>
-          <option value="focus">Focus 🎯</option>
-          <option value="creativity">Creativity 🎨</option>
-        </select>
-      </div>
+
 
       <div className={styles.actions}>
         <Button type="button" variant="ghost" onClick={onCancel}>Cancel</Button>

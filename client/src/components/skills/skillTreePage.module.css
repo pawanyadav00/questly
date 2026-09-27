@@ -1,17 +1,395 @@
 .container {
-  padding: var(--space-6);
+  padding: var(--space-8);
   max-width: 1200px;
   margin: 0 auto;
 }
-.title {
-  font-size: 2.5rem;
-  margin-bottom: var(--space-5);
-  text-align: center;
-  color: var(--color-primary);
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-4);
-  justify-items: center;
+  margin-bottom: var(--space-6);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.envSelectWrap {
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  border-radius: 8px;
+  padding: 0.35rem 0.75rem;
+  gap: 0.4rem;
+}
+
+.envIcon {
+  font-size: 1.1rem;
+}
+
+.envSelect {
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.envSelect option {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+/* Summary Card */
+.summaryCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.7) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg, 14px);
+  padding: 1.25rem 2rem;
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.summaryLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+.summaryValue {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.summaryDivider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Two-Column Tree Layout */
+.treeLayout {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr;
+  gap: var(--space-6);
+  align-items: flex-start;
+}
+
+@media (max-width: 860px) {
+  .treeLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.colTitle {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.nodesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.skillNode {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.skillNode:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateX(4px);
+}
+
+.skillNodeActive {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.18) 0%, rgba(30, 41, 59, 0.8) 100%) !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+}
+
+.nodeIconWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.nodeIcon {
+  font-size: 2rem;
+}
+
+.nodeLvlBadge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: rgba(99, 102, 241, 0.25);
+  color: #a5b4fc;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+}
+
+.nodeContent {
+  flex: 1;
+}
+
+.nodeTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.nodeName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.nodeProgressWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nodeProgressMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.nodeProgressBar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.nodeProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  transition: width 0.3s ease;
+}
+
+/* Right Details Column */
+.detailsCard {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.detailsIconWrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.detailsBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.branchTag {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.detailsTitle {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.detailsProgressSection {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detailsProgressHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+.skillQuestsSection {
+  margin-top: 1rem;
+}
+
+.skillQuestsTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 0.85rem;
+}
+
+.emptyDrills {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #94a3b8;
+}
+
+.skillQuestsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.miniQuestCard {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.miniQuestCard:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+.questLocked {
+  opacity: 0.6;
+}
+
+.questCompleted {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.miniQuestHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.miniQuestTitleArea {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.completedIcon {
+  color: #10b981;
+}
+
+.lockedIcon {
+  color: #64748b;
+}
+
+.miniQuestTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.miniQuestDesc {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.miniQuestFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.miniRewards {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.fireIcon {
+  color: #f97316;
+}
+
+.coinIcon {
+  color: #fbbf24;
+}
+
+.emptyDetails {
+  text-align: center;
+  padding: 3rem;
+  color: #94a3b8;
 }

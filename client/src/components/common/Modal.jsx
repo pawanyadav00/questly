@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import styles from './modal.module.css';
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose, children, maxWidth, style }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -18,8 +18,12 @@ const Modal = ({ isOpen, onClose, children }) => {
 
   return (
     <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
+      <div
+        className={styles.modal}
+        style={{ ...(maxWidth ? { maxWidth } : {}), ...(style || {}) }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className={styles.closeButton} onClick={onClose} aria-label="Close modal">
           <RiCloseLine />
         </button>
         {children}

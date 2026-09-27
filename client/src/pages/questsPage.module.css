@@ -1,25 +1,167 @@
+/* questsPage.module.css */
+
 .page {
   padding: var(--space-8);
-  background: var(--bg-primary);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 12px var(--shadow-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .title {
   font-size: var(--text-3xl);
   color: var(--text-primary);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-1);
 }
 
 .subtitle {
-  font-size: var(--text-lg);
   color: var(--text-secondary);
+  font-size: var(--text-base);
+}
+
+.topActions {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.rollBtn {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: none;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+  font-weight: 700;
+}
+
+.rollBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+}
+
+.controlsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
   margin-bottom: var(--space-6);
 }
 
-.placeholder {
-  padding: var(--space-6);
+.filterTabs {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--bg-secondary, rgba(30, 41, 59, 0.5));
+  padding: 0.3rem;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border-default);
+  overflow-x: auto;
+}
+
+.tabBtn {
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  color: var(--text-primary);
+}
+
+.activeTab {
+  background: var(--accent-primary, #6366f1);
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-secondary, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg, 12px);
+  padding: 0.5rem 1rem;
+  min-width: 260px;
+}
+
+.searchIcon {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  width: 100%;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted, #64748b);
+}
+
+.questsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-5);
+}
+
+.questWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.parentGoalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.25rem;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.goalLink {
+  cursor: pointer;
+  color: var(--accent-primary, #6366f1);
+  transition: text-decoration 0.2s;
+}
+
+.goalLink:hover {
+  text-decoration: underline;
+}
+
+.emptyCard {
   text-align: center;
-  color: var(--text-muted);
-  font-style: italic;
+  padding: 3rem 1.5rem;
+  background: var(--bg-secondary, rgba(30, 41, 59, 0.5));
+  border: 1px dashed var(--border-default);
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.emptyText {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
