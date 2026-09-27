@@ -1,47 +1,60 @@
-# ⚔️ LifeQuest — Gamified Productivity Web App
+# ⚔️ Questly — AI-Powered Syllabus & Curriculum RPG Learning Sanctuary
 
-> *"Turn your goals into quests. Complete them. Level up."*
+> *"Turn your syllabus and problem sets into an immersive RPG adventure. Complete challenges. Defeat milestone bosses. Level up your mastery."*
 
-LifeQuest transforms everyday productivity and habit tracking into an immersive RPG adventure. Say goodbye to mundane to-do lists—break your massive life goals into sequenced quest chains, earn XP and gold coins, allocate skill points across dynamic skill trees, conquer daily trivia challenges, and defeat world bosses.
+**Questly** is a personal RPG learning and productivity workspace designed to transform intense academic courses, coding roadmaps, and self-study syllabi into structured, gamified campaigns.
+
+Instead of staring at overwhelming course outlines or static to-do lists, drop your syllabus into Questly: it automatically decomposes topics into sequential quest chains with interactive quizzes, coding drills, and milestone boss battles.
 
 ---
 
 ## 🌟 Key Features
 
-- **🛡️ RPG Progression & Player Identity**:
-  - Earn XP and Gold Coins upon quest completion.
-  - Automatic level-up threshold scaling with celebratory level-up animations.
-  - Unlock and equip custom RPG titles (e.g., *Novice Adventurer*, *Skill Pro*, *Quest Master*).
-  - Track consecutive active streaks with fire streak tracking.
+### ⚡ 1. AI Curriculum & Problem Set Forge
+- **Instant Syllabus Ingestion**: Paste any topic list, university curriculum, or interview prep roadmap.
+- **Automated RPG Questline Generation**: Automatically extracts structured quest chains with difficulty tiers (*Easy*, *Medium*, *Hard*, *Epic*), prerequisite dependencies, XP, and coin rewards.
+- **1-Click Built-in Presets**:
+  - *Data Structures & Algorithms (LeetCode Roadmap)*
+  - *Full-Stack Web Development (React, Node, DB)*
+  - *Python Mastery & Core CS*
+  - *System Design & Large-Scale Architecture*
 
-- **📜 Goal Campaigns & Quest Dependency Chains**:
-  - Organize ambitions into structured Goals with difficulty tiers (*Easy*, *Medium*, *Hard*, *Epic*).
-  - Build sequenced quest chains with prerequisites—dependent quests stay locked until prerequisites are cleared.
-  - Real-time **Goal Health indicators** (*Healthy*, *At Risk*, *Falling Behind*, *Overdue*) with intelligent deadline warnings.
+### ⚔️ 2. Interactive Problem Solving & Challenge Workspace
+- **Multi-Problem Drills**: Each quest contains progressive concept check quizzes and hands-on coding or exercise drills.
+- **Sticky Pinned Navigation**: Smooth, viewport-friendly layout with sticky header progress and sticky bottom action buttons (`Previous`, `Save & Exit`, `Next Problem`, `Complete Quest`) so buttons are never pushed out of sight.
+- **Hints & Reference Solutions**: Progressive hints and reference solutions available when needed.
+- **Triumph Fanfare**: Celebratory victory screen detailing XP and Coin gains when all challenges are conquered.
 
-- **🎲 Roll a Random Quest**:
-  - Decision fatigue? Hit "Roll Random Quest" to let the animated fortune selector pick your next actionable quest.
+### 🔄 3. Adaptive Learning Environments (Preset Switching)
+- Switch seamlessly between different learning environments (e.g., *DSA*, *Web Dev*, *Machine Learning*).
+- **Environment Isolation**: Each syllabus preset tracks its own independent:
+  - **Level & XP Progress** (Level 1 $\rightarrow$ $\infty$)
+  - **Gold Coins Balance**
+  - **Active Streak 🔥**
+  - **Sequential Quest Progress**
+  - **Milestone Boss HP**
+- Switch between presets without losing progress.
 
-- **🗡️ World Boss Battles**:
-  - Face off against *The Grand Overlord*.
-  - Every completed quest inflicts direct HP damage to the boss with animated boss health bars.
+### 🗡️ 4. Curriculum Milestone Boss Battles
+- Each syllabus environment awakens a dedicated Milestone Boss (e.g., *The Algorithm Overlord*, *The Monolith Golem*).
+- Completing quests in the active syllabus inflicts direct HP damage to the boss with animated health bars.
+- Defeating the boss represents true mastery of the curriculum.
 
-- **🌳 Interactive Skill Trees**:
-  - Level up 5 distinct core disciplines: **Coding**, **Problem Solving**, **Knowledge**, **Focus**, and **Creativity**.
-  - Visual skill progression nodes with dedicated XP bars.
+### 🎲 5. Roll a Random Quest
+- Facing decision fatigue? Use the animated "Roll a Quest" dice roller to pick your next actionable quest from your unlocked chains.
 
-- **🎯 Daily Trivia Challenge**:
-  - Daily intellectual challenges powered by an Express API proxy with bulletproof fallbacks.
-  - Interactive multiple-choice selection awarding bonus **+50 XP** and **+20 Coins** with daily completion persistence.
+### 👑 6. Level Up Celebrations & Title Unlocks
+- Ascend in levels as you earn XP.
+- Claim Level-Up rewards, earn Gold Coins, and unlock prestigious adventurer titles (*Novice Adventurer*, *Code Slayer*, *Quest Master*).
 
-- **📊 Comprehensive Analytics & Statistics**:
-  - Visualized analytics powered by **Recharts**:
-    - Daily XP gained over time.
-    - Weekly quest completion cadence.
-    - Skill distribution radar & breakdown.
+### 📊 7. Visualized Analytics & Statistics
+- Track your learning journey with **Recharts**:
+  - Daily XP gained over time.
+  - Weekly quest completion cadence.
+  - Overall syllabus completion percentages.
 
-- **🎨 Modern Dark/Light Theme**:
-  - Sleek glassmorphism RPG design, micro-animations, accessible color tokens, and responsive mobile-to-desktop layouts.
+### 🎨 8. Premium Dark RPG Design System
+- Sleek glassmorphism aesthetic built with custom CSS tokens, modern typography, responsive cards, micro-animations, and zero clutter.
 
 ---
 
@@ -49,13 +62,12 @@ LifeQuest transforms everyday productivity and habit tracking into an immersive 
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React 18, Vite |
+| **Frontend Framework** | React 18, Vite |
 | **Routing** | React Router v6 |
-| **State Management** | React Context (`PlayerContext`, `ThemeContext`) |
-| **Data Visualization**| Recharts |
+| **State & Persistence** | React Context (`PlayerContext`, `ThemeContext`), `localStorage` |
+| **Data Visualization** | Recharts |
 | **Icons & Design** | React Icons, Vanilla CSS Modules |
-| **Persistence** | Browser `localStorage` (Zero-config single-user mode) |
-| **Backend Proxy** | Node.js, Express, Axios (CORS & Trivia API proxy) |
+| **Backend API** | Node.js, Express (API Proxy) |
 
 ---
 
@@ -66,21 +78,20 @@ quest/
 ├── client/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── common/         # Card, Button, Badge, ProgressBar, Modal, Toast
-│   │   │   ├── layout/         # Navbar with live player stats
-│   │   │   ├── goals/          # GoalCard, GoalForm
-│   │   │   ├── quests/         # QuestCard, QuestForm, RollQuestModal
-│   │   │   ├── skills/         # SkillTreePage, SkillNode
-│   │   │   ├── trivia/         # DailyChallenge interactive quiz widget
+│   │   │   ├── common/         # Card, Button, Badge, ProgressBar, Modal, Toast, LevelUpModal
+│   │   │   ├── layout/         # Navbar with live player stats and active environment badge
+│   │   │   ├── goals/          # GoalCard, GoalForm, AISyllabusModal
+│   │   │   ├── quests/         # QuestCard, QuestForm, QuestChallengeModal, RollQuestModal
 │   │   │   └── achievements/   # AchievementGrid, AchievementCard
-│   │   ├── context/            # PlayerContext, ThemeContext
-│   │   ├── pages/              # Dashboard, Goals, Quests, Stats, Profile, Daily, Settings, Landing
+│   │   ├── context/            # PlayerContext (Environment state, XP, Level, Quests, Goals)
+│   │   ├── pages/              # DashboardPage, GoalsPage, GoalDetailPage, QuestsPage, StatsPage, ProfilePage, SettingsPage, LandingPage
 │   │   ├── services/           # storage.js, xpService.js, bossService.js
 │   │   ├── utils/              # levelMath.js
-│   │   └── styles/             # index.css (tokens, resets, themes)
-│   └── package.json
+│   │   └── styles/             # index.css (tokens, resets, theme variables)
+│   ├── package.json
+│   └── vite.config.js
 ├── server/
-│   ├── server.js               # Express proxy with curated fallbacks
+│   ├── server.js               # Express API proxy server
 │   └── package.json
 └── README.md
 ```
@@ -90,18 +101,18 @@ quest/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v16 or higher)
+- [Node.js](https://nodejs.org/) (v16 or higher)
 - npm or yarn
 
-### 1. Start the Server (Trivia Proxy)
+### 1. Start the Backend Proxy Server
 ```bash
 cd server
 npm install
 npm run dev
 ```
-*The proxy server will run on `http://localhost:5000`.*
+*The server will start on `http://localhost:5000`.*
 
-### 2. Start the Client (React + Vite)
+### 2. Start the Frontend Client
 In a separate terminal:
 ```bash
 cd client
@@ -112,16 +123,23 @@ npm run dev
 
 ---
 
-## 🎮 How to Play
+## 🎮 How It Works
 
-1. **Visit the Landing Page** at `/welcome` or jump directly to the **Dashboard** at `/dashboard`.
-2. **Create Your First Goal** in the **Goals** tab (e.g., *"Master Full Stack Web Development"*).
-3. **Add Quests** with prerequisites to build your campaign chain.
-4. **Complete Quests** to earn XP, level up, unlock skills, and deal damage to the World Boss.
-5. **Take the Daily Trivia Challenge** each day in the **Daily** tab to claim bonus loot.
-6. **Check Your Stats** in the **Stats** tab to track your productivity growth over time!
+1. **Dashboard (`/dashboard`)**:
+   - View your current active syllabus, level, XP progress, coin balance, and streak.
+   - Jump straight into the **Next Quest Focus** with **⚔️ Solve Challenge**.
+   - Track boss health for your active curriculum.
+2. **Goals / Presets (`/goals`)**:
+   - Manage your syllabus presets or click **⚡ Forge with AI** to generate a new curriculum.
+   - Switch active environments with 1 click.
+   - Delete or customize presets as needed.
+3. **Quests Hub (`/quests`)**:
+   - Filter quests across all goals or by the active syllabus.
+   - View prerequisite lock statuses and launch challenges.
+4. **Stats & Profile (`/stats`, `/profile`)**:
+   - Inspect completion charts, XP growth, achievements, and equipped titles.
 
 ---
 
 ## 📄 License
-This project is open-source and created as a gamified personal development showcase.
+This project is open-source and created as an AI-powered gamified learning workspace.
