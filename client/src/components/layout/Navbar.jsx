@@ -16,7 +16,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <NavLink to="/" className={styles.logo}>
         <RiSwordFill className={styles.logoIcon} />
-        LifeQuest
+        Questly
       </NavLink>
 
       <div className={styles.navLinks}>

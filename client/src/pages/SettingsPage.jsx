@@ -22,7 +22,7 @@ const SettingsPage = () => {
   };
 
   const handleResetData = () => {
-    if (window.confirm("Are you sure you want to reset all your progress? This will clear all syllabi, skills, quests, and stats.")) {
+    if (window.confirm("Are you sure you want to reset all your progress? This will clear all syllabi, presets, quests, and stats.")) {
       resetAllData();
       navigate('/');
     }
