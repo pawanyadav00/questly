@@ -1,0 +1,300 @@
+/* header.module.css */
+
+.header {
+  height: 68px;
+  background-color: var(--bg-primary, #050507);
+  border-bottom: 1px solid var(--border-default, #171720);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(12px);
+  box-sizing: border-box;
+}
+
+.titleArea {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hamburgerBtn {
+  display: none;
+  background: transparent;
+  border: 1px solid #1c1c28;
+  border-radius: 8px;
+  color: #f8fafc;
+  font-size: 1.3rem;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #0d0d12;
+  transition: background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.hamburgerBtn:hover {
+  background-color: #171722;
+}
+
+.titleTextWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pageTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary, #f8fafc);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.pageSubtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted, #55556a);
+  margin: 0;
+}
+
+.controlsArea {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* Global Search Bar */
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-card, #0d0d12);
+  border: 1px solid var(--border-default, #171720);
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 220px;
+}
+
+.searchBar:hover {
+  border-color: var(--border-hover, #262633);
+  background-color: var(--bg-hover, #15151c);
+}
+
+.searchIcon {
+  color: var(--text-muted, #55556a);
+  font-size: 1rem;
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  color: var(--text-primary, #f8fafc);
+  font-size: 0.82rem;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted, #55556a);
+}
+
+.shortcutKbd {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--bg-secondary, #0a0a0e);
+  color: var(--text-muted, #55556a);
+  border: 1px solid var(--border-default, #171720);
+}
+
+/* Syllabus Switcher Select */
+.syllabusSelectorWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--bg-card, #0d0d12);
+  border: 1px solid var(--border-default, #171720);
+  border-radius: 8px;
+  padding: 0.35rem 0.65rem;
+}
+
+.selectorIcon {
+  color: #6366f1;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.syllabusSelect {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.82rem;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  max-width: 160px;
+}
+
+.syllabusSelect option {
+  background-color: #0d0d12;
+  color: #f8fafc;
+}
+
+/* Quick AI Forge Pill */
+.forgePillBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  color: #c084fc;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.forgePillBtn:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(168, 85, 247, 0.25) 100%);
+  border-color: #a855f7;
+  transform: translateY(-1px);
+}
+
+/* Profile Badge */
+.profileBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.3rem 0.65rem 0.3rem 0.4rem;
+  border-radius: 9999px;
+  background-color: var(--bg-card, #0d0d12);
+  border: 1px solid var(--border-default, #171720);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profileBadge:hover {
+  border-color: var(--border-hover, #262633);
+  background-color: var(--bg-hover, #15151c);
+}
+
+.avatarWrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+  flex-shrink: 0;
+}
+
+.avatarInitial {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.onlineDot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border: 2px solid #0d0d12;
+  border-radius: 50%;
+}
+
+.profileMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.profileName {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary, #f8fafc);
+}
+
+.levelTag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  background-color: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* Responsive Breakpoints for Tablet & Phone */
+@media (max-width: 900px) {
+  .searchBar {
+    display: none;
+  }
+  .header {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+    padding: 0 0.85rem;
+  }
+
+  .hamburgerBtn {
+    display: flex;
+  }
+
+  .pageTitle {
+    font-size: 1.05rem;
+  }
+
+  .pageSubtitle {
+    display: none;
+  }
+
+  .controlsArea {
+    gap: 0.5rem;
+  }
+
+  .syllabusSelect {
+    max-width: 100px;
+    font-size: 0.75rem;
+  }
+
+  .forgeBtnText {
+    display: none;
+  }
+
+  .forgePillBtn {
+    padding: 0.4rem 0.55rem;
+    font-size: 0.9rem;
+  }
+
+  .profileName {
+    display: none;
+  }
+
+  .profileBadge {
+    padding: 2px;
+    background: transparent;
+    border: none;
+  }
+}

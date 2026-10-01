@@ -571,3 +571,29 @@
 .claimBtn {
   min-width: 260px;
 }
+
+@media (max-width: 600px) {
+  .headerTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .questTitle {
+    font-size: 1.15rem;
+  }
+
+  .rewardsPreview {
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
+
+  .claimBtn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .rewardsCard {
+    padding: 0.85rem 1rem;
+    gap: 1rem;
+  }
+}

@@ -1,5 +1,7 @@
 .page {
-  padding: var(--space-8) 0;
+  padding: var(--space-8);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .header {
@@ -141,4 +143,42 @@
   font-size: var(--text-sm);
   color: var(--text-secondary);
   margin: 0 0 var(--space-3) 0;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 0.5rem 0;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .meta {
+    flex-wrap: wrap;
+  }
+
+  .progressSection {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .questSectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .bossCard {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
 }

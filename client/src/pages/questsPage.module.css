@@ -165,3 +165,47 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 0.5rem 0;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .topActions {
+    width: 100%;
+  }
+
+  .rollBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .filterTabs {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+  }
+
+  .searchBox {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .questsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

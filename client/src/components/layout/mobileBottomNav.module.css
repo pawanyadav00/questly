@@ -1,0 +1,101 @@
+/* mobileBottomNav.module.css */
+
+.bottomNav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .bottomNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: rgba(10, 10, 14, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid #1a1a24;
+    z-index: 80;
+    padding: 0 0.5rem;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    box-sizing: border-box;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.7);
+  }
+
+  .navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    flex: 1;
+    max-width: 65px;
+  }
+
+  .navIcon {
+    font-size: 1.25rem;
+    transition: transform 0.15s ease, color 0.15s ease;
+  }
+
+  .navLabel {
+    line-height: 1;
+  }
+
+  .navItem:hover {
+    color: #94a3b8;
+  }
+
+  .navItemActive {
+    color: #6366f1 !important;
+  }
+
+  .navItemActive .navIcon {
+    transform: translateY(-1px);
+    color: #818cf8;
+  }
+
+  /* Center AI Forge Action Button */
+  .centerActionBtn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -16px;
+    outline: none;
+  }
+
+  .centerIconGlow {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.5);
+    border: 3px solid #050507;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .centerActionBtn:active .centerIconGlow {
+    transform: scale(0.92);
+  }
+
+  .centerIcon {
+    color: #ffffff;
+    font-size: 1.3rem;
+  }
+}

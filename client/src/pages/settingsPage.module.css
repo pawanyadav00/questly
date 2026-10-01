@@ -1,83 +1,105 @@
-.container {
-  max-width: 800px;
+/* settingsPage.module.css */
+
+.page {
+  padding: var(--space-8);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+}
+
+.header {
+  margin-bottom: var(--space-6);
 }
 
 .title {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  font-size: var(--text-3xl, 1.875rem);
   color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
 }
 
 .section {
-  background: var(--surface-light);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-sm);
 }
 
 .section h2 {
   margin-top: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-4);
   color: var(--text-primary);
-  font-size: 1.5rem;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-default);
+  padding-bottom: var(--space-3);
 }
 
 .form {
   display: flex;
   align-items: flex-end;
-  gap: 1rem;
+  gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-2);
   flex: 1;
-  max-width: 300px;
+  min-width: 240px;
+  max-width: 520px;
 }
 
 .inputGroup label {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
 }
 
 .input {
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-dark);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background: var(--bg-primary);
   color: var(--text-primary);
-  font-size: 1rem;
+  font-size: var(--text-sm);
+  transition: border-color 0.2s;
+  width: 100%;
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: var(--accent-primary, #6366f1);
 }
 
 .saveBtn {
-  padding: 0.75rem 1.5rem;
-  background: var(--primary-color);
+  padding: 0.65rem 1.5rem;
+  background: var(--accent-primary, #6366f1);
   color: white;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--text-sm);
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .saveBtn:hover {
   opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .successMsg {
-  color: var(--success-color);
-  font-size: 0.9rem;
+  color: var(--status-healthy, #22c55e);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  align-self: center;
 }
 
 .preferenceRow {
@@ -85,42 +107,69 @@
   justify-content: space-between;
   align-items: center;
   color: var(--text-primary);
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
 .toggleBtn {
-  padding: 0.5rem 1rem;
-  background: var(--surface-light);
-  border: 1px solid var(--border-color);
+  padding: 0.6rem 1.25rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
   color: var(--text-primary);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .toggleBtn:hover {
-  background: var(--border-color);
+  border-color: var(--accent-primary, #6366f1);
+  color: var(--accent-primary, #6366f1);
 }
 
 .dangerBtn {
-  padding: 0.5rem 1rem;
-  background: #ff4757;
+  padding: 0.6rem 1.25rem;
+  background: #ef4444;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .dangerBtn:hover {
-  background: #ff6b81;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .page {
+    padding: 0.5rem 0;
+  }
+
+  .section {
+    padding: 1rem;
+  }
+
   .form {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .inputGroup {
     max-width: 100%;
+    min-width: 0;
+  }
+
+  .saveBtn {
+    width: 100%;
+  }
+
+  .dangerBtn {
+    width: 100%;
+    margin-top: 0.5rem;
   }
 }
+

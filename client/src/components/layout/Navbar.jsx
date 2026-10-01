@@ -1,12 +1,10 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useTheme } from '../../context/ThemeContext';
 import { PlayerContext } from '../../context/PlayerContext';
-import { RiSwordFill, RiMoonFill, RiSunFill, RiVipCrownFill, RiCoinsLine, RiUserFill, RiSettings3Fill, RiBarChartFill } from 'react-icons/ri';
+import { RiSwordFill, RiVipCrownFill, RiCoinsLine, RiUserFill, RiSettings3Fill } from 'react-icons/ri';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
-  const { theme, toggleTheme } = useTheme();
   const { player, activeGoal, goals, switchActiveGoal } = useContext(PlayerContext);
 
   const activeLevel = activeGoal?.level || 1;
@@ -20,30 +18,20 @@ const Navbar = () => {
       </NavLink>
 
       <div className={styles.navLinks}>
-        <NavLink 
-          to="/dashboard" 
-          className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}
-        >
-          Dashboard
-        </NavLink>
-        <NavLink 
-          to="/goals" 
-          className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}
-        >
-          Goals
-        </NavLink>
-        <NavLink 
-          to="/quests" 
-          className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}
-        >
-          Quests
-        </NavLink>
-        <NavLink 
-          to="/stats" 
-          className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}
-        >
-          Stats
-        </NavLink>
+        {[
+          { path: '/dashboard', label: 'Dashboard' },
+          { path: '/goals', label: 'Goals' },
+          { path: '/quests', label: 'Quests' },
+          { path: '/stats', label: 'Stats' },
+        ].map(({ path, label }) => (
+          <NavLink
+            key={path}
+            to={path}
+            className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
+          >
+            {label}
+          </NavLink>
+        ))}
       </div>
 
       <div className={styles.actions}>
@@ -78,9 +66,6 @@ const Navbar = () => {
         <NavLink to="/settings" className={styles.iconLink}>
           <RiSettings3Fill />
         </NavLink>
-        <button className={styles.themeToggle} onClick={toggleTheme}>
-          {theme === 'dark' ? <RiSunFill /> : <RiMoonFill />}
-        </button>
       </div>
     </nav>
   );

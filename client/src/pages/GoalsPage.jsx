@@ -24,12 +24,7 @@ const GoalsPage = () => {
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
 
   const handleSaveGoal = (goal) => {
-    const isEditing = goals.some(g => g.id === goal.id);
-    if (isEditing) {
-      updateGoal(goal);
-    } else {
-      addGoal(goal);
-    }
+    (goals.some((g) => g.id === goal.id) ? updateGoal : addGoal)(goal);
     setIsModalOpen(false);
   };
 

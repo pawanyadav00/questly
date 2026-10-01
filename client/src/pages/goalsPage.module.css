@@ -1,5 +1,7 @@
 .page {
-  padding: var(--space-8) 0;
+  padding: var(--space-8);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .header {
@@ -32,4 +34,22 @@
   background-color: var(--bg-secondary);
   border-radius: var(--radius-lg);
   border: 1px dashed var(--border-default);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 0.5rem 0;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }

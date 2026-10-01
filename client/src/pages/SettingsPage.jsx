@@ -1,13 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PlayerContext } from '../context/PlayerContext';
-import { useTheme } from '../context/ThemeContext';
 import styles from './settingsPage.module.css';
 
 const SettingsPage = () => {
   const navigate = useNavigate();
   const { player, updatePlayerName, resetAllData } = useContext(PlayerContext);
-  const { theme, toggleTheme } = useTheme();
   
   const [nameInput, setNameInput] = useState(player.name);
   const [saveMessage, setSaveMessage] = useState('');
@@ -29,8 +27,11 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Settings</h1>
+    <div className={styles.page}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Settings</h1>
+        <p className={styles.subtitle}>Configure your preferences, account details, and AI services</p>
+      </header>
       
       <div className={styles.section}>
         <h2>Profile</h2>
@@ -50,15 +51,6 @@ const SettingsPage = () => {
         </form>
       </div>
 
-      <div className={styles.section}>
-        <h2>Appearance</h2>
-        <div className={styles.preferenceRow}>
-          <span>Theme</span>
-          <button className={styles.toggleBtn} onClick={toggleTheme}>
-            {theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          </button>
-        </div>
-      </div>
 
       <div className={styles.section}>
         <h2>AI Campaign Forge</h2>

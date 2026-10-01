@@ -14,10 +14,6 @@
   z-index: 100;
 }
 
-[data-theme="light"] .navbar {
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
 .logo {
   display: flex;
   align-items: center;
@@ -61,14 +57,40 @@
   gap: var(--space-4);
 }
 
+.iconLink {
+  color: var(--text-secondary);
+  font-size: var(--text-lg);
+  padding: var(--space-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: var(--radius-sm, 6px);
+  transition: color 0.2s, background 0.2s;
+}
+
+.iconLink:hover {
+  color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .themeToggle {
   color: var(--text-secondary);
   font-size: var(--text-lg);
   padding: var(--space-1);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm, 6px);
+  transition: color 0.2s, background 0.2s;
 }
 
 .themeToggle:hover {
   color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .playerStats {
@@ -97,29 +119,33 @@
 }
 
 .envPill {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
   background: rgba(99, 102, 241, 0.12);
   border: 1px solid rgba(99, 102, 241, 0.35);
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: var(--radius-full);
   margin-right: var(--space-2);
 }
 
 .envIcon {
   font-size: 0.95rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
 .envSelect {
   background: transparent;
   border: none;
   color: var(--text-primary);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   outline: none;
   cursor: pointer;
-  max-width: 130px;
+  max-width: 140px;
+  line-height: 1.2;
 }
 
 .envSelect option {

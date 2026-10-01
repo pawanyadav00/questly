@@ -273,6 +273,49 @@ export const DEFAULT_INITIAL_CAMPAIGN = {
   }
 };
 
+const DOMAIN_PRESET_SKILLS = [
+  {
+    keys: ['dsa', 'algorithm', 'data structure'],
+    skills: [
+      { id: "arrays_pointers", name: "Arrays & Sliding Window", icon: "🔍", level: 1, xp: 0 },
+      { id: "linked_lists", name: "Linked Lists & Pointers", icon: "🔗", level: 1, xp: 0 },
+      { id: "stacks_queues", name: "Stacks & Queues", icon: "🥞", level: 1, xp: 0 },
+      { id: "trees_graphs", name: "Trees & Graph Traversals", icon: "🌳", level: 1, xp: 0 },
+      { id: "dynamic_prog", name: "Dynamic Programming", icon: "⚡", level: 1, xp: 0 }
+    ]
+  },
+  {
+    keys: ['web', 'fullstack', 'full-stack', 'react'],
+    skills: [
+      { id: "frontend_ui", name: "Modern React & State Architecture", icon: "⚛️", level: 1, xp: 0 },
+      { id: "backend_apis", name: "Node.js REST & Async Services", icon: "🔌", level: 1, xp: 0 },
+      { id: "database_sql", name: "Database Modeling & Indexes", icon: "🗄️", level: 1, xp: 0 },
+      { id: "security_auth", name: "Authentication & Web Security", icon: "🛡️", level: 1, xp: 0 },
+      { id: "devops_cloud", name: "Deployment & CI/CD Pipelines", icon: "☁️", level: 1, xp: 0 }
+    ]
+  },
+  {
+    keys: ['python'],
+    skills: [
+      { id: "py_core", name: "Core Python & Data Types", icon: "🐍", level: 1, xp: 0 },
+      { id: "py_functional", name: "Comprehensions & Generators", icon: "⚡", level: 1, xp: 0 },
+      { id: "py_oop", name: "OOP & Magic Dunder Methods", icon: "🏗️", level: 1, xp: 0 },
+      { id: "py_async", name: "Asyncio & Concurrency", icon: "🔄", level: 1, xp: 0 },
+      { id: "py_testing", name: "Pytest & Profiling", icon: "🧪", level: 1, xp: 0 }
+    ]
+  },
+  {
+    keys: ['system', 'design', 'scale'],
+    skills: [
+      { id: "sys_lb", name: "Load Balancing & Reverse Proxies", icon: "⚖️", level: 1, xp: 0 },
+      { id: "sys_cache", name: "Distributed Caching (Redis/Memcached)", icon: "🚀", level: 1, xp: 0 },
+      { id: "sys_db", name: "Database Sharding & Replication", icon: "🗄️", level: 1, xp: 0 },
+      { id: "sys_queues", name: "Async Message Queues (Kafka/RabbitMQ)", icon: "📬", level: 1, xp: 0 },
+      { id: "sys_rate", name: "Rate Limiting & Resiliency", icon: "🛡️", level: 1, xp: 0 }
+    ]
+  }
+];
+
 export const normalizeGoal = (goal) => {
   if (!goal) return goal;
   const normalized = { ...goal };
@@ -284,40 +327,11 @@ export const normalizeGoal = (goal) => {
   // Ensure skills exist according to the syllabus topics/domain
   if (!Array.isArray(normalized.skills) || normalized.skills.length === 0) {
     const titleLower = (normalized.title || '').toLowerCase();
-    if (titleLower.includes('dsa') || titleLower.includes('algorithm') || titleLower.includes('data structure')) {
-      normalized.skills = [
-        { id: "arrays_pointers", name: "Arrays & Sliding Window", icon: "🔍", level: 1, xp: 0 },
-        { id: "linked_lists", name: "Linked Lists & Pointers", icon: "🔗", level: 1, xp: 0 },
-        { id: "stacks_queues", name: "Stacks & Queues", icon: "🥞", level: 1, xp: 0 },
-        { id: "trees_graphs", name: "Trees & Graph Traversals", icon: "🌳", level: 1, xp: 0 },
-        { id: "dynamic_prog", name: "Dynamic Programming", icon: "⚡", level: 1, xp: 0 }
-      ];
-    } else if (titleLower.includes('web') || titleLower.includes('fullstack') || titleLower.includes('full-stack') || titleLower.includes('react')) {
-      normalized.skills = [
-        { id: "frontend_ui", name: "Modern React & State Architecture", icon: "⚛️", level: 1, xp: 0 },
-        { id: "backend_apis", name: "Node.js REST & Async Services", icon: "🔌", level: 1, xp: 0 },
-        { id: "database_sql", name: "Database Modeling & Indexes", icon: "🗄️", level: 1, xp: 0 },
-        { id: "security_auth", name: "Authentication & Web Security", icon: "🛡️", level: 1, xp: 0 },
-        { id: "devops_cloud", name: "Deployment & CI/CD Pipelines", icon: "☁️", level: 1, xp: 0 }
-      ];
-    } else if (titleLower.includes('python')) {
-      normalized.skills = [
-        { id: "py_core", name: "Core Python & Data Types", icon: "🐍", level: 1, xp: 0 },
-        { id: "py_functional", name: "Comprehensions & Generators", icon: "⚡", level: 1, xp: 0 },
-        { id: "py_oop", name: "OOP & Magic Dunder Methods", icon: "🏗️", level: 1, xp: 0 },
-        { id: "py_async", name: "Asyncio & Concurrency", icon: "🔄", level: 1, xp: 0 },
-        { id: "py_testing", name: "Pytest & Profiling", icon: "🧪", level: 1, xp: 0 }
-      ];
-    } else if (titleLower.includes('system') || titleLower.includes('design') || titleLower.includes('scale')) {
-      normalized.skills = [
-        { id: "sys_lb", name: "Load Balancing & Reverse Proxies", icon: "⚖️", level: 1, xp: 0 },
-        { id: "sys_cache", name: "Distributed Caching (Redis/Memcached)", icon: "🚀", level: 1, xp: 0 },
-        { id: "sys_db", name: "Database Sharding & Replication", icon: "🗄️", level: 1, xp: 0 },
-        { id: "sys_queues", name: "Async Message Queues (Kafka/RabbitMQ)", icon: "📬", level: 1, xp: 0 },
-        { id: "sys_rate", name: "Rate Limiting & Resiliency", icon: "🛡️", level: 1, xp: 0 }
-      ];
+    const matched = DOMAIN_PRESET_SKILLS.find(d => d.keys.some(k => titleLower.includes(k)));
+
+    if (matched) {
+      normalized.skills = matched.skills;
     } else {
-      // Derive 3-5 domain skills from quests or goal title
       const extracted = [];
       const questList = normalized.quests || [];
       questList.forEach((q, idx) => {
@@ -334,14 +348,11 @@ export const normalizeGoal = (goal) => {
           }
         }
       });
-      if (extracted.length === 0) {
-        extracted.push(
-          { id: "core_foundations", name: `${normalized.title} Foundations`, icon: "📘", level: 1, xp: 0 },
-          { id: "practical_application", name: "Problem Solving & Drills", icon: "⚡", level: 1, xp: 0 },
-          { id: "advanced_mastery", name: "Advanced Projects & Mastery", icon: "🏆", level: 1, xp: 0 }
-        );
-      }
-      normalized.skills = extracted;
+      normalized.skills = extracted.length > 0 ? extracted : [
+        { id: "core_foundations", name: `${normalized.title} Foundations`, icon: "📘", level: 1, xp: 0 },
+        { id: "practical_application", name: "Problem Solving & Drills", icon: "⚡", level: 1, xp: 0 },
+        { id: "advanced_mastery", name: "Advanced Projects & Mastery", icon: "🏆", level: 1, xp: 0 }
+      ];
     }
   }
 

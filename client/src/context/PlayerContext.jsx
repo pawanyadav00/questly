@@ -8,7 +8,7 @@ import {
   getActiveGoalId,
   saveActiveGoalId
 } from '../services/storage';
-import { getRequiredXp } from '../utils/levelMath';
+import { getRequiredXp, addXpAndCalculateLevel } from '../utils/levelMath';
 
 export const PlayerContext = createContext();
 
@@ -75,66 +75,57 @@ export const PlayerProvider = ({ children }) => {
     20: "Legendary Hero"
   };
 
-  const addXp = amount => {
-    setPlayer(prevPlayer => {
-      let newXp = prevPlayer.xp + amount;
-      let newTotal = prevPlayer.totalXp + amount;
-      let newLevel = prevPlayer.level;
-      let xpRequired = getRequiredXp(newLevel);
-      let leveledUp = false;
-      let newlyUnlockedTitle = null;
-      let updatedTitles = [...(prevPlayer.unlockedTitles || ["Beginner"])];
+  const addXp = (amount) => {
+    setPlayer((prev) => {
+      const { xp: newXp, level: newLevel, levelsGained } = addXpAndCalculateLevel(prev.xp, prev.level, amount);
+      const newTotal = (prev.totalXp || 0) + amount;
 
-      while (newXp >= xpRequired) {
-        newXp -= xpRequired;
-        newLevel++;
-        xpRequired = getRequiredXp(newLevel);
-        leveledUp = true;
+      if (levelsGained > 0) {
+        const updatedTitles = [...(prev.unlockedTitles || ["Beginner"])];
+        let newlyUnlockedTitle = null;
 
-        if (LEVEL_TITLES[newLevel] && !updatedTitles.includes(LEVEL_TITLES[newLevel])) {
-          updatedTitles.push(LEVEL_TITLES[newLevel]);
-          newlyUnlockedTitle = LEVEL_TITLES[newLevel];
+        for (let lvl = prev.level + 1; lvl <= newLevel; lvl++) {
+          if (LEVEL_TITLES[lvl] && !updatedTitles.includes(LEVEL_TITLES[lvl])) {
+            updatedTitles.push(LEVEL_TITLES[lvl]);
+            newlyUnlockedTitle = LEVEL_TITLES[lvl];
+          }
         }
-      }
 
-      if (leveledUp) {
-        const bonusCoins = (newLevel - prevPlayer.level) * 50;
+        const bonusCoins = levelsGained * 50;
         setLevelUpInfo({
           level: newLevel,
           coinsEarned: bonusCoins,
           unlockedTitle: newlyUnlockedTitle
         });
+
         return {
-          ...prevPlayer,
+          ...prev,
           xp: newXp,
           totalXp: newTotal,
           level: newLevel,
-          coins: prevPlayer.coins + bonusCoins,
+          coins: (prev.coins || 0) + bonusCoins,
           unlockedTitles: updatedTitles
         };
       }
 
-      return { ...prevPlayer, xp: newXp, totalXp: newTotal, level: newLevel };
+      return { ...prev, xp: newXp, totalXp: newTotal, level: newLevel };
     });
   };
 
-  const addCoins = amount => {
-    setPlayer(prev => ({ ...prev, coins: prev.coins + amount }));
+  const addCoins = (amount) => {
+    setPlayer((prev) => ({ ...prev, coins: (prev.coins || 0) + amount }));
   };
 
   const completeQuest = (questId, xpReward, coinReward, skillId, targetGoalId) => {
-    // 1. Global rewards
     if (xpReward) addXp(xpReward);
     if (coinReward) addCoins(coinReward);
 
-    // 2. Goal / Syllabus specific environment update
-    setGoals(prevGoals => {
-      const updatedGoals = prevGoals.map(goal => {
-        const containsQuest = (goal.quests || []).some(q => q.id === questId);
+    setGoals((prevGoals) => {
+      const updatedGoals = prevGoals.map((goal) => {
+        const containsQuest = (goal.quests || []).some((q) => q.id === questId);
         if (!containsQuest && goal.id !== targetGoalId) return goal;
 
-        // Update quest status and unlock next
-        const updatedQuests = (goal.quests || []).map(q => {
+        const updatedQuests = (goal.quests || []).map((q) => {
           if (q.id === questId) return { ...q, status: 'completed' };
           if (q.prerequisiteId === questId && q.status === 'locked') {
             return { ...q, status: 'available' };
@@ -142,22 +133,13 @@ export const PlayerProvider = ({ children }) => {
           return q;
         });
 
-        // Update goal syllabus XP, level, coins
-        let goalXp = (goal.xp || 0) + (xpReward || 0);
-        let goalLevel = goal.level || 1;
-        let goalReqXp = getRequiredXp(goalLevel);
-        while (goalXp >= goalReqXp) {
-          goalXp -= goalReqXp;
-          goalLevel++;
-          goalReqXp = getRequiredXp(goalLevel);
-        }
-        let goalCoins = (goal.coins || 0) + (coinReward || 0);
+        const { xp: goalXp, level: goalLevel } = addXpAndCalculateLevel(goal.xp, goal.level, xpReward || 0);
 
         return {
           ...goal,
           xp: goalXp,
           level: goalLevel,
-          coins: goalCoins,
+          coins: (goal.coins || 0) + (coinReward || 0),
           quests: updatedQuests
         };
       });
@@ -166,25 +148,14 @@ export const PlayerProvider = ({ children }) => {
       return updatedGoals;
     });
 
-    // 3. Also update player skills if in global list
     if (skillId && xpReward) {
-      setPlayer(prev => {
-        const oldSkill = (prev.skills || []).find(s => s.id === skillId);
-        if (!oldSkill) return prev;
-        const updated = prev.skills.map(skill => {
-          if (skill.id === skillId) {
-            let nXp = skill.xp + xpReward;
-            let nLvl = skill.level;
-            let req = getRequiredXp(nLvl);
-            while (nXp >= req) {
-              nXp -= req;
-              nLvl++;
-              req = getRequiredXp(nLvl);
-            }
-            return { ...skill, xp: nXp, level: nLvl };
-          }
-          return skill;
-        });
+      setPlayer((prev) => {
+        if (!prev.skills?.some((s) => s.id === skillId)) return prev;
+        const updated = prev.skills.map((s) =>
+          s.id === skillId
+            ? { ...s, ...addXpAndCalculateLevel(s.xp, s.level, xpReward) }
+            : s
+        );
         return { ...prev, skills: updated };
       });
     }
@@ -207,6 +178,9 @@ export const PlayerProvider = ({ children }) => {
   const updatePlayerName = (newName) => {
     setPlayer(prev => ({ ...prev, name: newName }));
   };
+
+  const [isAiModalOpen, setIsAiModalOpen] = useState(false);
+  const [isRollModalOpen, setIsRollModalOpen] = useState(false);
 
   const updatePlayerTitle = (newTitle) => {
     setPlayer(prev => ({ ...prev, title: newTitle }));
@@ -286,6 +260,10 @@ export const PlayerProvider = ({ children }) => {
         clearLevelUp: () => setLevelUpInfo(null),
         updatePlayerName,
         updatePlayerTitle,
+        isAiModalOpen,
+        setIsAiModalOpen,
+        isRollModalOpen,
+        setIsRollModalOpen,
       }}
     >
       {children}

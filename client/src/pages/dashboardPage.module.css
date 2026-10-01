@@ -1,294 +1,952 @@
-/* dashboardPage.module.css */
+/* dashboardPage.module.css - Matte Black Bento Layout */
 
 .page {
-  padding: var(--space-8);
-  max-width: 1200px;
+  padding: 0;
+  max-width: 1480px;
   margin: 0 auto;
+  color: var(--text-primary, #f8fafc);
 }
 
-.headerRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  margin-bottom: var(--space-6);
-}
-
-.title {
-  font-size: var(--text-3xl);
-  color: var(--text-primary);
-  margin-bottom: var(--space-1);
-}
-
-.playerTitleTag {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-}
-
-.playerTitleTag span {
-  color: var(--accent-primary, #6366f1);
-  font-weight: 600;
-}
-
-.rollBtn {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  border: none;
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-}
-
-.rollBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
-}
-
-
-
-.statSub {
-  font-size: 0.72rem;
-  color: #94a3b8;
-  margin-top: 0.25rem;
-  display: block;
-}
-
-.skillsHeaderRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: var(--space-4);
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.skillsSubtitle {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  margin-top: 0.2rem;
-}
-
-.statsGrid {
+/* Bento Grid System */
+.bentoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--space-4);
-  margin-bottom: var(--space-6);
+  grid-template-columns: 2.1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
 }
 
-.statCard {
-  padding: var(--space-4);
-}
-
-.miniXpBar {
-  margin-top: 0.5rem;
-  height: 6px;
-  background: var(--bg-tertiary, rgba(255, 255, 255, 0.08));
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.miniXpFill {
-  height: 100%;
-  background: linear-gradient(90deg, #6366f1, #a855f7);
-  border-radius: 999px;
-  transition: width 0.3s ease;
-}
-
-.coinValue {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: var(--text-lg);
-  font-weight: 700;
-  color: #fbbf24;
-}
-
-.coinIcon {
-  color: #fbbf24;
-}
-
-/* Spotlight Widgets */
-.spotlightRow {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-5);
-  margin-bottom: var(--space-8);
-}
-
-.activeFocusWidget,
-.bossWidget {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* Common Bento Card Style */
+.bentoCard {
+  background-color: #0d0d12;
+  border: 1px solid #171720;
   border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.activeFocusWidget {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
-  border: 1px solid rgba(99, 102, 241, 0.25);
+.bentoCard:hover {
+  border-color: #262633;
 }
 
-.bossWidget {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(38, 20, 36, 0.8) 100%);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-}
-
-.widgetHeader {
+/* Card Header */
+.cardHeader {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.75rem;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
 }
 
-.widgetIconWrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(99, 102, 241, 0.2);
-  color: #818cf8;
+.cardHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.headerIconWrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background-color: #15151c;
+  border: 1px solid #22222d;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  flex-shrink: 0;
+  color: #818cf8;
+  font-size: 0.95rem;
 }
 
-.bossIconWrap {
-  background: rgba(239, 68, 68, 0.2);
-  color: #f87171;
+.cardTitle {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  letter-spacing: -0.01em;
 }
 
-.badgeRow {
-  margin-bottom: 0.2rem;
+.moreBtn {
+  color: #55556a;
+  font-size: 1.1rem;
+  padding: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.15s ease;
 }
 
-.widgetTitle {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 0;
+.moreBtn:hover {
+  color: #94a3b8;
 }
 
-.widgetDesc {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 1.2rem;
-}
-
-.widgetFooter {
+/* =========================================
+   CARD 1: TOTAL SYLLABUS PROGRESSION
+   ========================================= */
+.progressionTopRow {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
   flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.heroMetric {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroNumber {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+
+.heroSubNumber {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.trendRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #10b981;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.trendMuted {
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* 3 Mini Chips Column */
+.miniChipsRow {
+  display: flex;
+  align-items: center;
   gap: 0.75rem;
 }
 
-.rewardsPreview {
-  display: flex;
-  gap: 0.6rem;
+.miniChip {
+  background-color: #121218;
+  border: 1px solid #1a1a24;
+  border-radius: 10px;
+  padding: 0.6rem 0.85rem;
+  min-width: 105px;
 }
 
-.rewardXp {
-  display: inline-flex;
+.miniChipLabel {
+  font-size: 0.68rem;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.miniChipValue {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.chipLink {
+  color: #6366f1;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 0.25rem;
+}
+
+.chipLink:hover {
+  text-decoration: underline;
+}
+
+/* Alert / Action Notification Banner */
+.actionBanner {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  gap: 1rem;
+}
+
+.actionBannerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+.bannerIcon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #6366f1;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.bannerActionBtn {
+  background: transparent;
+  border: none;
+  color: #a5b4fc;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
   align-items: center;
   gap: 0.25rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #f59e0b;
+  transition: color 0.15s ease;
 }
 
-.rewardCoins {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #fbbf24;
+.bannerActionBtn:hover {
+  color: #ffffff;
 }
 
-.bossHpSection {
+/* =========================================
+   CARD 2: ADVENTURER TREASURY
+   ========================================= */
+.treasuryBalanceArea {
+  margin-bottom: 1.25rem;
+}
+
+.treasuryValueRow {
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.treasuryValue {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
   gap: 0.4rem;
 }
 
-.hpLabelRow {
-  display: flex;
-  justify-content: space-between;
-  font-size: var(--text-xs);
-  color: var(--text-secondary);
-}
-
-/* Skills Section */
-.skillsSection {
-  margin-top: var(--space-8);
-}
-
-.sectionTitle {
-  font-size: var(--text-2xl);
-  color: var(--text-primary);
-  margin-bottom: var(--space-4);
-}
-
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-4);
-}
-
-.skillCard {
-  padding: var(--space-4);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.skillHeader {
+.xpBadgePill {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 0.3rem;
+  background-color: #161620;
+  border: 1px solid #232332;
+  border-radius: 9999px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #a855f7;
 }
 
-.skillIcon {
-  font-size: var(--text-3xl);
-}
-
-.skillTitleArea {
+.treasuryHint {
+  font-size: 0.75rem;
+  color: #64748b;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
 }
 
-.skillName {
-  font-size: var(--text-lg);
+.treasuryBtnGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-top: auto;
+}
+
+.primaryPillBtn {
+  background-color: #ffffff;
+  color: #050507;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.65rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all 0.18s ease;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.primaryPillBtn:hover {
+  background-color: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+.ghostPillBtn {
+  background-color: #121218;
+  color: #cbd5e1;
+  border: 1px solid #22222e;
+  font-size: 0.82rem;
   font-weight: 600;
-  margin: 0;
+  padding: 0.65rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all 0.18s ease;
 }
 
-.skillLevel {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
+.ghostPillBtn:hover {
+  background-color: #1a1a24;
+  border-color: #2e2e3e;
+  color: #ffffff;
 }
 
-.skillProgressText {
-  font-size: var(--text-xs);
-  color: var(--text-secondary);
-  text-align: right;
-  margin-bottom: var(--space-1);
+/* =========================================
+   CARD 3: STUDY & XP HISTORY CHART
+   ========================================= */
+.chartHeaderControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.progressBarWrapper {
-  height: 8px;
-  background-color: var(--bg-tertiary);
-  border-radius: var(--radius-full);
+.chartSelect {
+  background-color: #121218;
+  border: 1px solid #1c1c26;
+  border-radius: 8px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  outline: none;
+  cursor: pointer;
+}
+
+.chartContainer {
+  height: 185px;
+  width: 100%;
+  position: relative;
+}
+
+.chartLegendRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #161620;
+}
+
+.chartSubNote {
+  font-size: 0.68rem;
+  color: #55556a;
+}
+
+.chartLegends {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.legendDot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 0.35rem;
+}
+
+/* Custom Chart Tooltip */
+.chartTooltip {
+  background-color: #08080c;
+  border: 1px solid #222230;
+  border-radius: 8px;
+  padding: 0.55rem 0.8rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+  font-size: 0.75rem;
+}
+
+.tooltipTitle {
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+}
+
+.tooltipRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+/* =========================================
+   CARD 4: RECENT ACTIVITY TIMELINE
+   ========================================= */
+.activityGauge {
+  margin-bottom: 1.15rem;
+  background-color: #121218;
+  border: 1px solid #1a1a24;
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+}
+
+.gaugeLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+
+.gaugeTrack {
+  height: 5px;
+  background-color: #1a1a24;
+  border-radius: 9999px;
   overflow: hidden;
 }
 
-.progressBarFill {
+.gaugeFill {
   height: 100%;
-  background-color: var(--accent-primary);
-  border-radius: var(--radius-full);
-  transition: width 0.3s ease;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+  transition: width 0.4s ease;
+}
+
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  overflow-y: auto;
+  max-height: 195px;
+}
+
+.timelineSectionTitle {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #55556a;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+.timelineItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.timelineItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.timelineIconCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.timelineMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.timelineSub {
+  font-size: 0.68rem;
+  color: #64748b;
+}
+
+.timelineReward {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #10b981;
+  white-space: nowrap;
+}
+
+/* =========================================
+   CARD 5: ACTIVE SYLLABUS QUESTS TABLE
+   ========================================= */
+.tableControls {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.addQuestBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  background-color: #14141e;
+  border: 1px solid #232332;
+  padding: 0.3rem 0.65rem;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.addQuestBtn:hover {
+  background-color: #1c1c2a;
+  color: #ffffff;
+}
+
+.viewAllLink {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #818cf8;
+  text-decoration: none;
+}
+
+.viewAllLink:hover {
+  text-decoration: underline;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  margin-top: 0.5rem;
+}
+
+.questTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.questTable th {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #55556a;
+  font-weight: 700;
+  padding: 0.5rem 0.65rem;
+  border-bottom: 1px solid #161622;
+  white-space: nowrap;
+}
+
+.questTable td {
+  padding: 0.75rem 0.65rem;
+  border-bottom: 1px solid #14141e;
+  vertical-align: middle;
+}
+
+.questTable tr:hover td {
+  background-color: #111118;
+}
+
+.questNameCell {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 180px;
+}
+
+.questTypeIconWrap {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background-color: #161622;
+  border: 1px solid #20202e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #818cf8;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.questInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.questNameText {
+  font-weight: 600;
+  color: #f8fafc;
+  line-height: 1.3;
+}
+
+.questSubText {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.skillPill {
+  display: inline-block;
+  background-color: #13131c;
+  border: 1px solid #1e1e2c;
+  color: #94a3b8;
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.diffBadge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+  text-transform: capitalize;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.diffEasy {
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.diffMedium {
+  background-color: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.diffHard {
+  background-color: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.statusBadge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+  text-transform: capitalize;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.statusActive {
+  background-color: rgba(99, 102, 241, 0.12);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+.statusCompleted {
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.statusLocked {
+  background-color: rgba(100, 116, 139, 0.12);
+  color: #64748b;
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.tableActionBtn {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  white-space: nowrap;
+}
+
+.challengeBtn {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.challengeBtn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.doneTag {
+  color: #10b981;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.lockedTag {
+  color: #55556a;
+  font-size: 0.75rem;
+}
+
+/* =========================================
+   CARD 6: PROMO BOSS ENCOUNTER CARD
+   ========================================= */
+.bossBentoCard {
+  background: radial-gradient(120% 120% at 80% 20%, #451a03 0%, #1c0b03 40%, #0d0d12 100%);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 0 8px 30px rgba(249, 115, 22, 0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bossHeaderBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: rgba(249, 115, 22, 0.2);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  color: #fb923c;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.bossName {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+.bossLore {
+  font-size: 0.8rem;
+  color: #fdba74;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+}
+
+.bossHpBarContainer {
+  margin-bottom: 1.25rem;
+}
+
+.bossHpLabelRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fed7aa;
+  margin-bottom: 0.35rem;
+}
+
+.bossHpTrack {
+  height: 7px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.bossHpFill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #ea580c 0%, #f97316 50%, #fbbf24 100%);
+  transition: width 0.4s ease;
+}
+
+.bossCtaBtn {
+  background-color: #ffffff;
+  color: #0c0a09;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.65rem 1.25rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.bossCtaBtn:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(249, 115, 22, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .bentoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .bentoGrid {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bentoCard {
+    padding: 1.15rem 1rem;
+    border-radius: 14px;
+  }
+
+  .progressionTopRow {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .heroNumber {
+    font-size: 1.85rem;
+  }
+
+  .heroSubNumber {
+    font-size: 0.95rem;
+  }
+
+  .miniChipsRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.45rem;
+    width: 100%;
+  }
+
+  .miniChip {
+    min-width: 0;
+    padding: 0.5rem 0.35rem;
+    text-align: center;
+  }
+
+  .miniChipLabel {
+    font-size: 0.6rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.15rem;
+  }
+
+  .miniChipValue {
+    font-size: 0.76rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .chipLink {
+    margin-left: 0;
+    font-size: 0.65rem;
+  }
+
+  .actionBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .actionBannerLeft {
+    font-size: 0.78rem;
+  }
+
+  .bannerActionBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.45rem;
+    background: rgba(99, 102, 241, 0.2);
+    border-radius: 8px;
+  }
+
+  .treasuryValue {
+    font-size: 1.8rem;
+  }
+
+  .treasuryBtnGroup {
+    gap: 0.5rem;
+  }
+
+  .primaryPillBtn,
+  .ghostPillBtn {
+    padding: 0.55rem 0.5rem;
+    font-size: 0.78rem;
+  }
+
+  .chartContainer {
+    height: 165px;
+  }
+
+  .chartLegendRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .questTable {
+    min-width: 520px;
+  }
+
+  .tableWrap {
+    margin: 0.25rem -0.5rem 0 -0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .bossCtaBtn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .bentoCard {
+    padding: 1rem 0.85rem;
+  }
+
+  .heroNumber {
+    font-size: 1.6rem;
+  }
+
+  .trendRow {
+    font-size: 0.74rem;
+    flex-wrap: wrap;
+  }
+
+  .miniChipsRow {
+    gap: 0.35rem;
+  }
+
+  .miniChipValue {
+    font-size: 0.72rem;
+  }
+
+  .bossName {
+    font-size: 1.25rem;
+  }
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getGoals, saveGoals } from '../services/storage';
 import { PlayerContext } from '../context/PlayerContext';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
@@ -87,19 +86,15 @@ const QuestsPage = () => {
   };
 
   const handleDeleteQuest = (questId) => {
-    const targetQuest = allQuests.find(q => q.id === questId);
+    const targetQuest = allQuests.find((q) => q.id === questId);
     if (!targetQuest) return;
 
-    const parentGoal = goals.find(g => g.id === targetQuest.goalId);
+    const parentGoal = goals.find((g) => g.id === targetQuest.goalId);
     if (!parentGoal) return;
 
-    const remainingQuests = (parentGoal.quests || []).filter(q => q.id !== questId);
-    const cleaned = remainingQuests.map(q => {
-      if (q.prerequisiteId === questId) {
-        return { ...q, prerequisiteId: '', status: 'available' };
-      }
-      return q;
-    });
+    const cleaned = (parentGoal.quests || [])
+      .filter((q) => q.id !== questId)
+      .map((q) => (q.prerequisiteId === questId ? { ...q, prerequisiteId: '', status: 'available' } : q));
 
     updateGoal({ ...parentGoal, quests: cleaned });
   };

@@ -32,15 +32,12 @@ const GoalDetailPage = () => {
 
   const handleSaveQuest = (questData) => {
     if (!goal) return;
-    const isEditing = (goal.quests || []).some(q => q.id === questData.id);
-    let newQuests;
+    const quests = goal.quests || [];
+    const exists = quests.some((q) => q.id === questData.id);
+    const newQuests = exists
+      ? quests.map((q) => (q.id === questData.id ? questData : q))
+      : [...quests, questData];
 
-    if (isEditing) {
-      newQuests = (goal.quests || []).map(q => q.id === questData.id ? questData : q);
-    } else {
-      newQuests = [...(goal.quests || []), questData];
-    }
-    
     updateGoal({ ...goal, quests: newQuests });
     setIsQuestModalOpen(false);
     setEditingQuest(null);
@@ -48,14 +45,10 @@ const GoalDetailPage = () => {
 
   const handleDeleteQuest = (questId) => {
     if (!goal) return;
-    const newQuests = (goal.quests || []).filter(q => q.id !== questId);
-    const cleanedQuests = newQuests.map(q => {
-      if (q.prerequisiteId === questId) {
-        return { ...q, prerequisiteId: '', status: 'available' };
-      }
-      return q;
-    });
-    
+    const cleanedQuests = (goal.quests || [])
+      .filter((q) => q.id !== questId)
+      .map((q) => (q.prerequisiteId === questId ? { ...q, prerequisiteId: '', status: 'available' } : q));
+
     updateGoal({ ...goal, quests: cleanedQuests });
   };
 

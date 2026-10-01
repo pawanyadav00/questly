@@ -157,3 +157,14 @@
   color: var(--text-secondary);
   font-style: italic;
 }
+
+@media (max-width: 480px) {
+  .modalActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .modalActions button {
+    width: 100%;
+  }
+}

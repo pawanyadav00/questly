@@ -21,24 +21,17 @@ const QuestForm = ({ goalId, initialData, availableQuests, onSubmit, onCancel })
     }
   }, [initialData]);
 
-  // Adjust rewards based on difficulty
+  const DIFFICULTY_REWARDS = {
+    easy: { xpReward: 50, coinReward: 10 },
+    medium: { xpReward: 100, coinReward: 25 },
+    hard: { xpReward: 250, coinReward: 50 },
+    epic: { xpReward: 500, coinReward: 100 }
+  };
+
   const handleDifficultyChange = (e) => {
     const diff = e.target.value;
-    let xp = 50, coins = 10;
-    
-    switch(diff) {
-      case 'medium': xp = 100; coins = 25; break;
-      case 'hard': xp = 250; coins = 50; break;
-      case 'epic': xp = 500; coins = 100; break;
-      default: xp = 50; coins = 10;
-    }
-    
-    setFormData(prev => ({
-      ...prev,
-      difficulty: diff,
-      xpReward: xp,
-      coinReward: coins
-    }));
+    const rewards = DIFFICULTY_REWARDS[diff] || DIFFICULTY_REWARDS.easy;
+    setFormData(prev => ({ ...prev, difficulty: diff, ...rewards }));
   };
 
   const handleChange = (e) => {
