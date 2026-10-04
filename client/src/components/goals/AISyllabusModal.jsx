@@ -80,7 +80,8 @@ const AISyllabusModal = ({ isOpen, onClose, onCampaignDeployed }) => {
     const timer2 = setTimeout(() => setLoadingStep('Generating interactive challenges & problem drills...'), 2400);
 
     try {
-      const res = await fetch('/api/ai/generate-campaign', {
+      const apiBase = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+      const res = await fetch(`${apiBase}/api/ai/generate-campaign`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
